@@ -33,12 +33,12 @@ void secondLargest(int *arr, int n) {
 int *uniquenumber(int *arr, int n, int *count) {
     int mark[1000] = {0};
     *count = 0;
-    // Tính count để là size của mảng động chứa các số duy nhất (sao cho vừa đủ chứa)
+    // Tính count để là size của mảng động chứa các số duy nhất (sao cho vừa đủ chứa các số unique)
     // Đếm số lượng phần tử duy nhất và đánh dấu chúng trong mảng mark.
     for (size_t i = 0; i < n; i++) {
         if (mark[arr[i]] == 0) { //để duyệt các số lặp lại sẽ ko đc lưu
             mark[arr[i]] = 1;
-            (*count)++; 
+            (*count)++; // cứ duyệt qua đc 1 phần tử unique count sẽ tăng
         }
     }
 
