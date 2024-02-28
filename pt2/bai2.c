@@ -6,7 +6,7 @@
 bool palindrome(char* str) {
     int l = 0, r = strlen(str) - 1;
     while (l <= r) {
-        if (str[l] != str[r]) // Corrected the condition here
+        if (str[l] != str[r]) 
             return false;
         l++;
         r--;
