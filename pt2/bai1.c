@@ -7,7 +7,7 @@ void bubbleSort(int *arr, int n) {
     for (size_t i = 0; i < n; i++) {
         for (size_t j = 0; j < n - 1 - i; j++) {
             if (arr[j] < arr[j + 1]) {
-                int temp = arr[j]; // dich phan tu nho nhat ve cuoi
+                int temp = arr[j]; // dịch phần tử nhỏ nhất về cuối
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
             }
@@ -33,23 +33,23 @@ void secondLargest(int *arr, int n) {
 int *uniquenumber(int *arr, int n, int *count) {
     int mark[1000] = {0};
     *count = 0;
-    // Tính count để là size của mảng động chứa các số duy nhất
+    // Tính count để là size của mảng động chứa các số duy nhất (sao cho vừa đủ chứa)
     // Đếm số lượng phần tử duy nhất và đánh dấu chúng trong mảng mark.
     for (size_t i = 0; i < n; i++) {
-        if (mark[arr[i]] == 0) {
+        if (mark[arr[i]] == 0) { //để duyệt các số lặp lại sẽ ko đc lưu
             mark[arr[i]] = 1;
-            (*count)++;
+            (*count)++; 
         }
     }
 
     int *result = malloc((*count) * sizeof(int)); // Tạo mảng động để chứa các số duy nhất
-    int num = 0;
+    int num = 0; // Là số phần tử trong mảng result chứa unique
 
     // Lưu trữ các số duy nhất vào mảng
     for (size_t i = 0; i < n; i++) {
-        if (mark[arr[i]] == 1) { //mark cac so vua duoc lay ra ben ngoai
-            result[num++] = arr[i];
-            mark[arr[i]] = 2;
+        if (mark[arr[i]] == 1) { //mark cac so vua duoc lay ra ben ngoai, luc nay ta phai lay bang 1 vi vua set o tren, nếu bằng 1 sẽ đc cho vào mảng result
+            result[num++] = arr[i]; //cập nhât các phần tử trong mảng bằng các số unique tìm đc
+            mark[arr[i]] = 2;// nếu phần tử nào xuất hiện lần nữa, mark lúc này là 2 nên sẽ ko đc cho vào mảng 
         }
     }
 
@@ -74,7 +74,7 @@ int main() {
     int *uniquearr = uniquenumber(arr, 16, &count);
 
     printf("Unique numbers of array: ");
-    for (size_t i = 0; i < count; i++) {
+    for (size_t i = 0; i < count; i++) { // chay den count do mang result chua cac so unique
         printf("%d ", uniquearr[i]);
     }
     printf("\n");
